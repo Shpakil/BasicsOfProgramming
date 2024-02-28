@@ -1,0 +1,3 @@
+C:/Users/Кирилл/CLionProjects/BasicsOfProgramming/cmake-build-debug/CMakeFiles/BasicsOfProgramming.dir
+C:/Users/Кирилл/CLionProjects/BasicsOfProgramming/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Кирилл/CLionProjects/BasicsOfProgramming/cmake-build-debug/CMakeFiles/rebuild_cache.dir
