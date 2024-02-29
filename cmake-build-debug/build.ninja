@@ -55,11 +55,11 @@ build CMakeFiles/BasicsOfProgramming.dir/main.c.obj: C_COMPILER__BasicsOfProgram
   OBJECT_DIR = CMakeFiles\BasicsOfProgramming.dir
   OBJECT_FILE_DIR = CMakeFiles\BasicsOfProgramming.dir
 
-build CMakeFiles/BasicsOfProgramming.dir/vector.c.obj: C_COMPILER__BasicsOfProgramming_unscanned_Debug C$:/Users/Кирилл/CLionProjects/BasicsOfProgramming/vector.c || cmake_object_order_depends_target_BasicsOfProgramming
-  DEP_FILE = CMakeFiles\BasicsOfProgramming.dir\vector.c.obj.d
+build CMakeFiles/BasicsOfProgramming.dir/data_structures/vector/vector.c.obj: C_COMPILER__BasicsOfProgramming_unscanned_Debug C$:/Users/Кирилл/CLionProjects/BasicsOfProgramming/data_structures/vector/vector.c || cmake_object_order_depends_target_BasicsOfProgramming
+  DEP_FILE = CMakeFiles\BasicsOfProgramming.dir\data_structures\vector\vector.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\BasicsOfProgramming.dir
-  OBJECT_FILE_DIR = CMakeFiles\BasicsOfProgramming.dir
+  OBJECT_FILE_DIR = CMakeFiles\BasicsOfProgramming.dir\data_structures\vector
 
 
 # =============================================================================
@@ -69,7 +69,7 @@ build CMakeFiles/BasicsOfProgramming.dir/vector.c.obj: C_COMPILER__BasicsOfProgr
 #############################################
 # Link the executable BasicsOfProgramming.exe
 
-build BasicsOfProgramming.exe: C_EXECUTABLE_LINKER__BasicsOfProgramming_Debug CMakeFiles/BasicsOfProgramming.dir/main.c.obj CMakeFiles/BasicsOfProgramming.dir/vector.c.obj
+build BasicsOfProgramming.exe: C_EXECUTABLE_LINKER__BasicsOfProgramming_Debug CMakeFiles/BasicsOfProgramming.dir/main.c.obj CMakeFiles/BasicsOfProgramming.dir/data_structures/vector/vector.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\BasicsOfProgramming.dir
