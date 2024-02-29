@@ -5,5 +5,6 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(BasicsOfProgramming
         main.c
-        vector.c
-        vector.h)
+        data_structures/vector/vector.c
+        data_structures/vector/vector.h
+)
