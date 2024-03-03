@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <assert.h>
 #include "data_structures/vector/vector.h"
+#include "data_structures/vector/vectorVoid.h"
 #include <assert.h>
 
 void test_pushBack_emptyVector() {
@@ -177,5 +179,11 @@ int main() {
     test_back_oneElementInVector();
     test_front_oneElementInVector();
     test_pushBack();
+
+    vectorVoid v;
+    v.baseTypeSize=sizeof(float);
+    v.size=2;
+    v.capacity=2*v.size;
+    v.data= malloc(v.baseTypeSize*v.capacity);
     return 0;
 }
