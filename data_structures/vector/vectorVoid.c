@@ -1,6 +1,7 @@
 //
 // Created by Кирилл on 03.03.2024.
 //
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "vectorVoid.h"
@@ -50,3 +51,7 @@ void deleteVectorV(vectorVoid *v) {
     v->size = 0;
     v->capacity = 0;
 }
+
+
+#include "vectorVoid.h"
+

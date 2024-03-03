@@ -12,6 +12,7 @@ typedef struct vectorVoid {
     size_t capacity; // вместимость вектора
     size_t baseTypeSize; // размер базового типа:
 } vectorVoid;
+
 //создает вектор размера n
 vectorVoid createVectorV(size_t n,size_t baseTypeSize);
 
@@ -26,4 +27,5 @@ void shrinkToFitV(vectorVoid *v);
 
 //освобождает память, выделенную вектору.
 void deleteVectorV(vectorVoid *v);
+
 #endif //BASICSOFPROGRAMMING_VECTORVOID_H
