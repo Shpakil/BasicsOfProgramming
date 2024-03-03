@@ -21,6 +21,12 @@ void test_pushBack_fullVector() {
     assert(v.data[1] == 2); // Проверяем, что добавлен правильный второй элемент
     deleteVector(&v); // Освобождаем память, выделенную для вектора
 }
+
+void test_pushBack() {
+    test_pushBack_fullVector();
+    test_pushBack_emptyVector();
+}
+
 void test_popBack_notEmptyVector() {
     vector v = createVector(0);
     pushBack(&v, 10);
@@ -29,6 +35,7 @@ void test_popBack_notEmptyVector() {
     assert(v.size == 0);
     assert(v.capacity == 1);
 }
+
 void test_atVector_notEmptyVector() {
     vector v = createVector(3);
     pushBack(&v, 10);
@@ -51,6 +58,11 @@ void test_atVector_requestToLastElement() {
     assert(*element == v.data[v.size - 1]);
 }
 
+void test_atVector() {
+    test_atVector_notEmptyVector();
+    test_atVector_requestToLastElement();
+}
+
 void test_back_oneElementInVector() {
     vector v = createVector(1);
     pushBack(&v, 10);
@@ -65,14 +77,105 @@ void test_front_oneElementInVector() {
     assert(*first_element == 10);
 }
 
+void test_reserve_zeroCapacity() {
+    vector v = createVector(0);
+    reserve(&v, 0);
+    assert(v.data == NULL);
+    assert(v.capacity == 0);
+    deleteVector(&v);
+}
+
+void test_reserve_increaseCapacity() {
+    vector v = createVector(0);
+    reserve(&v, 5);
+    assert(v.data != NULL);
+    assert(v.capacity == 5);
+    deleteVector(&v);
+}
+
+void test_reserve_decreaseCapacity() {
+    vector v = createVector(5);
+    reserve(&v, 3);
+    assert(v.capacity == 3);
+    deleteVector(&v);
+}
+
+void test_reserve() {
+    test_reserve_decreaseCapacity();
+    test_reserve_increaseCapacity();
+    test_reserve_zeroCapacity();
+}
+
+void test_clear() {
+    vector v = createVector(5);
+    clear(&v);
+    assert(v.size == 0);
+    deleteVector(&v);
+}
+
+void test_shrinkToFit() {
+    vector v = createVector(5);
+    v.size = 3;
+    shrinkToFit(&v);
+    assert(v.capacity == 3);
+    deleteVector(&v);
+}
+
+void test_deleteVector() {
+    vector v = createVector(5);
+    deleteVector(&v);
+    assert(v.data == NULL);
+    assert(v.size == 0);
+    assert(v.capacity == 0);
+}
+
+void test_isEmpty_emptyVector() {
+    vector v = createVector(0);
+    assert(isEmpty(&v));
+    deleteVector(&v);
+}
+
+void test_isEmpty_nonEmptyVector() {
+    vector v = createVector(5);
+    pushBack(&v, 1);
+    assert(!isEmpty(&v));
+    deleteVector(&v);
+}
+
+void test_isEmpty() {
+    test_isEmpty_emptyVector();
+    test_isEmpty_nonEmptyVector();
+}
+
+void test_isFull_fullVector() {
+    vector v = createVector(3);
+    v.size = 3;
+    assert(isFull(&v));
+    deleteVector(&v);
+}
+
+void test_isFull_notFullVector() {
+    vector v = createVector(5);
+    v.size = 3;
+    assert(!isFull(&v));
+    deleteVector(&v);
+}
+
+void test_isFull() {
+    test_isFull_fullVector();
+    test_isFull_notFullVector();
+}
 
 int main() {
-    test_atVector_notEmptyVector();
-    test_atVector_requestToLastElement();
+    test_reserve();
+    test_clear();
+    test_shrinkToFit();
+    test_deleteVector();
+    test_isEmpty();
+    test_isFull();
+    test_atVector();
     test_back_oneElementInVector();
     test_front_oneElementInVector();
-    test_pushBack_emptyVector();
-    test_pushBack_fullVector();
-    test_popBack_notEmptyVector();
+    test_pushBack();
     return 0;
 }

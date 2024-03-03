@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <stdbool.h>
+
 #ifndef BASICSOFPROGRAMMING_VECTOR_H
 #define BASICSOFPROGRAMMING_VECTOR_H
 typedef struct vector {
@@ -10,8 +11,10 @@ typedef struct vector {
     size_t size; // размер вектора
     size_t capacity; // вместимость вектора
 } vector;
+
 //создает вектор размера n
 vector createVector(size_t n);
+
 //изменяет размер ветора v на новое занчение newCapacity
 void reserve(vector *v, size_t newCapacity);
 
@@ -40,11 +43,12 @@ void pushBack(vector *v, int x);
 void popBack(vector *v);
 
 //возвращает указатель на index-ый элемент вектора.
-int* atVector(vector *v, size_t index);
+int *atVector(vector *v, size_t index);
 
 //возвращает указатель на последний элемент вектора.
-int* back(vector *v);
+int *back(vector *v);
 
 //возвращает указатель на нулевой элемент вектора.
-int* front(vector *v);
+int *front(vector *v);
+
 #endif //BASICSOFPROGRAMMING_VECTOR_H

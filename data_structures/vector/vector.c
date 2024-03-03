@@ -40,7 +40,8 @@ void clear(vector *v) {
 
 void shrinkToFit(vector *v) {
     v->capacity = v->size;
-    v->data = realloc(v->data, sizeof(int) * v->capacity); //в методичке сказаано нужна только одна строка, но для  getVectorValue эта строчка нужна
+    v->data = realloc(v->data, sizeof(int) *
+                               v->capacity); //в методичке сказаано нужна только одна строка, но для  getVectorValue эта строчка нужна
 }
 
 void deleteVector(vector *v) {
@@ -58,37 +59,37 @@ bool isFull(vector *v) {
     return v->size == v->capacity;
 }
 
-int getVectorValue(vector *v, size_t i){
+int getVectorValue(vector *v, size_t i) {
     return v->data[i];
 }
 
-void pushBack(vector *v, int x){
-    if(v->capacity==0){
-        reserve(v,1);
+void pushBack(vector *v, int x) {
+    if (v->capacity == 0) {
+        reserve(v, 1);
     }
-    if(v->size==v->capacity){
-        reserve(v,2*v->capacity);
+    if (v->size == v->capacity) {
+        reserve(v, 2 * v->capacity);
     }
-    v->data[v->size++]=x;
+    v->data[v->size++] = x;
 }
 
-void popBack(vector *v){
-    if(v->capacity==0){
+void popBack(vector *v) {
+    if (v->capacity == 0) {
         fprintf(stderr, "bad alloc");
         exit(1);
     }
     v->size--;
 }
 
-int* atVector(vector *v, size_t index){
-    if(index>=v->size){
-        fprintf(stderr, "IndexError: a[%zu] is not exists",index);
+int *atVector(vector *v, size_t index) {
+    if (index >= v->size) {
+        fprintf(stderr, "IndexError: a[%zu] is not exists", index);
         exit(1);
     }
     return &v->data[index];
 }
 
-int* back(vector *v) {
+int *back(vector *v) {
     if (v->size == 0) {
         fprintf(stderr, "vector is empty");
         exit(1);
@@ -96,7 +97,7 @@ int* back(vector *v) {
     return &v->data[v->size - 1];
 }
 
-int* front(vector *v) {
+int *front(vector *v) {
     if (v->size == 0) {
         fprintf(stderr, "vector is empty");
         exit(1);
