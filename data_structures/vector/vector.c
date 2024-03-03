@@ -4,18 +4,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "vector.h"
-vector createVector(size_t n){
+
+vector createVector(size_t n) {
     vector v;
-    v.data= malloc(sizeof (int)*n);
-    v.size=0;
-    v.capacity=n;
+    v.data = malloc(sizeof(int) * n);
+    v.size = 0;
+    v.capacity = n;
     if (v.data == NULL) {
         fprintf(stderr, "bad alloc");
         exit(1);
     }
     return v;
 }
-void reserve(vector *v, size_t newCapacity){
+
+void reserve(vector *v, size_t newCapacity) {
     if (newCapacity == 0) {
         free(v->data);
         v->data = NULL;
@@ -31,18 +33,49 @@ void reserve(vector *v, size_t newCapacity){
         v->size = newCapacity;
     }
 }
+
 void clear(vector *v) {
     v->size = 0;
 }
-//освобождает память, выделенную поднеиспользуемые элементы.
+
 void shrinkToFit(vector *v) {
     v->capacity = v->size;
-    //v->data = realloc(v->data, sizeof(int) * v->capacity); в методичке сказаано нужна только одна строка
+    v->data = realloc(v->data, sizeof(int) * v->capacity); //в методичке сказаано нужна только одна строка, но для  getVectorValue эта строчка нужна
 }
-//освобождает память, выделенную вектору.
+
 void deleteVector(vector *v) {
     free(v->data);
     v->data = NULL;
     v->size = 0;
     v->capacity = 0;
+}
+
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+bool isFull(vector *v) {
+    return v->size == v->capacity;
+}
+
+int getVectorValue(vector *v, size_t i){
+    return v->data[i];
+}
+
+void pushBack(vector *v, int x){
+    if(v->capacity==0){
+        reserve(v,1);
+    }
+    if(v->size==v->capacity){
+        reserve(v,2*v->capacity);
+    }
+    v->data[v->size++]=x;
+}
+
+void popBack(vector *v){
+    if(v->capacity==0){
+        fprintf(stderr, "bad alloc");
+        exit(1);
+    }
+    v->size--;
 }
