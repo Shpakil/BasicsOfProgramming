@@ -4,7 +4,6 @@
 #include <assert.h>
 #include "data_structures/vector/vector.h"
 #include "data_structures/vector/vectorVoid.h"
-#include <assert.h>
 
 void test_pushBack_emptyVector() {
     vector v = createVector(0); // Создаем пустой вектор
@@ -168,7 +167,57 @@ void test_isFull() {
     test_isFull_notFullVector();
 }
 
+
+void test_createVectorV() {
+    size_t n = 5;
+    size_t baseTypeSize = sizeof(int);
+    vectorVoid v = createVectorV(n, baseTypeSize);
+    assert(v.size == 0);
+    assert(v.capacity == n);
+    assert(v.baseTypeSize == sizeof(int));
+    assert(v.data != NULL);
+    free(v.data);
+}
+
+void test_reserveV() {
+    size_t n = 5;
+    size_t baseTypeSize = sizeof(int);
+    vectorVoid v = createVectorV(n, baseTypeSize);
+    reserveV(&v, 10);
+    assert(v.capacity == 10);
+    reserveV(&v, 3);
+    assert(v.capacity == 3);
+    free(v.data);
+}
+
+void test_shrinkToFitV() {
+    size_t n = 5;
+    size_t baseTypeSize = sizeof(int);
+    vectorVoid v = createVectorV(n, baseTypeSize);
+    v.size = 3;
+    shrinkToFitV(&v);
+    assert(v.capacity == 3);
+    free(v.data);
+}
+
+void test_clearV() {
+    size_t n = 5;
+    size_t baseTypeSize = sizeof(int);
+    vectorVoid v = createVectorV(n, baseTypeSize);
+    clearV(&v);
+    assert(v.size == 0);
+    free(v.data);
+}
+
+
+
 int main() {
+    test_createVectorV();
+    test_reserveV();
+    test_shrinkToFitV();
+    test_clearV();
+
+
     test_reserve();
     test_clear();
     test_shrinkToFit();
