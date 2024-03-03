@@ -7,4 +7,6 @@ add_executable(BasicsOfProgramming
         main.c
         data_structures/vector/vector.c
         data_structures/vector/vector.h
+        data_structures/vector/vectorVoid.c
+        data_structures/vector/vectorVoid.h
 )
