@@ -180,10 +180,25 @@ int main() {
     test_front_oneElementInVector();
     test_pushBack();
 
-    vectorVoid v;
-    v.baseTypeSize=sizeof(float);
-    v.size=2;
-    v.capacity=2*v.size;
-    v.data= malloc(v.baseTypeSize*v.capacity);
-    return 0;
+    vectorVoid v1;
+    v1.baseTypeSize=sizeof(float);
+    v1.size=2;
+    v1.capacity=2*v1.size;
+    v1.data= malloc(v1.baseTypeSize*v1.capacity);
+
+    size_t n;
+    scanf("%zd", &n);
+    vectorVoid v = createVectorV(0, sizeof(float));
+    for (int i = 0; i < n; i++) {
+        float x;
+        scanf("%f", &x);
+        pushBackV(&v, &x);
+    }
+    for (int i = 0; i < n; i++) {
+        float x;
+        getVectorValueV(&v, i, &x);
+        printf("%f ", x);
+    }
+        return 0;
+
 }

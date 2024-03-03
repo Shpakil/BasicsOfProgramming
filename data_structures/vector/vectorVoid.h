@@ -6,6 +6,9 @@
 #define BASICSOFPROGRAMMING_VECTORVOID_H
 
 #include <limits.h>
+#include <stdio.h>
+#include <stdbool.h>
+
 typedef struct vectorVoid {
     void *data; // указатель на нулевой элемент вектора
     size_t size; // размер вектора
@@ -28,4 +31,21 @@ void shrinkToFitV(vectorVoid *v);
 //освобождает память, выделенную вектору.
 void deleteVectorV(vectorVoid *v);
 
+//проверяет пуст ли массив
+bool isEmptyV(vectorVoid *v);
+
+//проверяет полон ли массив
+bool isFullV(vectorVoid *v);
+
+// записывает по адресу destination index-ый элемент вектора v. Вычисление адреса местоположения элемента и его копирование:
+void getVectorValueV(vectorVoid *v, size_t index, void *destination);
+
+//записывает на index-ый элемент вектора v значение, расположенное по адресу source;
+void setVectorValueV(vectorVoid *v, size_t index, void *source);
+
+//удаляет последний элемент
+void popBackV(vectorVoid *v);
+
+//добавляет элемент в конец вектора, если вектор полон расширяет его в два раза
+void pushBackV(vectorVoid *v, void *source);
 #endif //BASICSOFPROGRAMMING_VECTORVOID_H
