@@ -1,11 +1,7 @@
 #include <stdio.h>
-
+#include <stdint.h>
+#include "data_structures/vector/vector.h"
 int main() {
-    printf("Hello, World!\n");
-    int sum =10;
-    int sum1=0;
-    int sum0=0;
-    int sum2=sum1+sum;
-    printf("%d",sum2);
+    vector v = createVector(SIZE_MAX);
     return 0;
 }
