@@ -9,4 +9,6 @@ add_executable(BasicsOfProgramming
         data_structures/vector/vector.h
         data_structures/vector/vectorVoid.c
         data_structures/vector/vectorVoid.h
+        data_structures/vector/matrix/matrix.c
+        data_structures/vector/matrix/matrix.h
 )
