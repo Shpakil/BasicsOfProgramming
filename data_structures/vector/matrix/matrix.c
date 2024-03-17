@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
 matrix getMemMatrix(int nRows, int nCols) {
     int **values = (int **) malloc(sizeof(int *) * nRows);
@@ -138,4 +140,46 @@ void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int)) 
         }
     }
     free(colValues);
+}
+
+// Предикат: является ли матрица квадратной
+bool isSquareMatrix(matrix *m) {
+    return m->nRows == m->nCols;
+}
+
+// Предикат: равны ли две матрицы
+bool areTwoMatricesEqual(matrix *m1, matrix *m2) {
+    return memcmp(m1->values, m2->values, sizeof(int*) * m1->nRows) == 0;
+}
+
+// Предикат: является ли матрица единичной
+bool isEMatrix(matrix *m) {
+    if (!isSquareMatrix(m)) {
+        return false;
+    }
+    for (int i = 0; i < m->nRows; i++) {
+        for (int j = 0; j < m->nCols; j++) {
+            if (i == j && m->values[i][j] != 1) {
+                return false;
+            } else if (i != j && m->values[i][j] != 0) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+// Предикат: является ли матрица симметричной
+bool isSymmetricMatrix(matrix *m) {
+    if (!isSquareMatrix(m)) {
+        return false;
+    }
+    for (int i = 0; i < m->nRows; i++) {
+        for (int j = i + 1; j < m->nCols; j++) {
+            if (m->values[i][j] != m->values[j][i]) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
