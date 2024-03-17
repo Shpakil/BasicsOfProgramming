@@ -3,6 +3,7 @@
 //
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include "vector.h"
 
 vector createVector(size_t n) {

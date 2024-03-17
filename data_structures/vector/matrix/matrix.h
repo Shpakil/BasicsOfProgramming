@@ -27,4 +27,29 @@ void freeMemMatrix(matrix *m);
 
 // освобождает память, выделенную под хранение массива ms из nMatrices матриц.
 void freeMemMatrices(matrix *ms, int nMatrices);
+
+//
+void inputMatrix(matrix *m);
+
+//
+void inputMatrices(matrix *ms, int nMatrices);
+
+//
+void outputMatrix(matrix m);
+
+//
+void outputMatrices(matrix *ms, int nMatrices);
+
+//
+void swapRows(matrix m, int i1, int i2);
+
+//
+void swapColumns(matrix m, int j1, int j2);
+
+// Функция для сортировки выбором столбцов матрицы по критерию
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
+
+// Функция для сортировки выбором столбцов матрицы по критерию
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
+
 #endif //BASICSOFPROGRAMMING_MATRIX_H
