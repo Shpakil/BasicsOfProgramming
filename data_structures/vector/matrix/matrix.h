@@ -4,7 +4,12 @@
 
 #ifndef BASICSOFPROGRAMMING_MATRIX_H
 #define BASICSOFPROGRAMMING_MATRIX_H
+
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 typedef struct matrix {
     int **values; // элементы матрицы
     int nRows; // количество рядов
@@ -47,7 +52,7 @@ void swapRows(matrix m, int i1, int i2);
 void swapColumns(matrix m, int j1, int j2);
 
 //Функция для сортировки выбором столбцов матрицы по критерию
-void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
+void  insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
 
 //Функция для сортировки выбором столбцов матрицы по критерию
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
@@ -75,4 +80,8 @@ position getMinValuePos(matrix m);
 
 // Поиск позиции максимального элемента матрицы
 position getMaxValuePos(matrix m);
+
+matrix createMatrixFromArray(const int *a, int nRows, int nCols);
+
+matrix *createArrayOfMatrixFromArray(const int *values, size_t nMatrices, size_t nRows, size_t nCols);
 #endif //BASICSOFPROGRAMMING_MATRIX_H
