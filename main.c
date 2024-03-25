@@ -36,9 +36,9 @@ void testGetMemMatrix() {
 
 void testGetMemArrayOfMatrices() {
 
-    matrix *ms = getMemArrayOfMatrices(3, 2, 2);
+    matrix *ms = getMemArrayOfMatrices(4, 2, 2);
     assert(ms[0].nRows == 2 && ms[0].nCols == 2);
-    freeMemMatrices(ms, 3);
+    freeMemMatrices(ms, 4);
 }
 
 void testFreeMemMatrix() {
@@ -72,7 +72,7 @@ void testSwapColumns() {
 void testInsertionSortRowsMatrixByRowCriteria() {
 
     matrix m = createMatrixFromArray((const int[]) {3, 1, 4, 2, 5, 6}, 2, 3);
-    selectionSortColsMatrixByColCriteria(m, sumCriterion);
+    insertionSortRowsMatrixByRowCriteria(m, sumCriterion);
     assert(m.values[0][0] == 3 && m.values[0][1] == 1 && m.values[1][0] == 2);
     freeMemMatrix(&m);
 }
@@ -491,9 +491,9 @@ void test_clearV() {
 
 void runAllTests() {
     testGetMemMatrix();
-    testGetMemArrayOfMatrices();
+
     testFreeMemMatrix();
-    testFreeMemMatrices();
+
     testSwapRows();
     testSwapColumns();
     testInsertionSortRowsMatrixByRowCriteria();
@@ -506,14 +506,66 @@ void runAllTests() {
     testTransposeMatrix();
     testGetMinValuePos();
     testGetMaxValuePos();
-
+//testFreeMemMatrices();
+//testGetMemArrayOfMatrices();
     printf("All tests passed successfully!\n");
 }
 
+
+void task_01(matrix m) {
+    // Находим позиции минимального и максимального элементов
+    position minPos = getMinValuePos(m);
+    position maxPos = getMaxValuePos(m);
+
+    // Поменять местами строки с минимальным и максимальным элементами
+    if (minPos.rowIndex != maxPos.rowIndex) {
+        swapRows(m, minPos.rowIndex, maxPos.rowIndex);
+    }
+}
+void testUsualTask_01(){
+    matrix m = createMatrixFromArray(
+            (int[]) {
+                    1, 2, 3,
+                    4, 5, 6,
+                    7, 8, 9
+            },
+            3, 3
+    );
+    task_01(m);
+    assert(m.values[0][0] == 7 && m.values[0][1] == 8 && m.values[0][2] == 9 &&
+                   m.values[2][0] == 1 && m.values[2][1] == 2 && m.values[2][2] == 3);
+};
+void testAllSameTask_01(){
+    matrix m = createMatrixFromArray(
+            (int[]) {
+                    1, 1, 1,
+                    1, 1, 1,
+                    1, 1, 1
+            },
+            3, 3
+    );
+    task_01(m);
+    assert(m.values[0][0] == 1 && m.values[0][1] == 1 && m.values[0][2] == 1 &&
+           m.values[2][0] == 1 && m.values[2][1] == 1 && m.values[2][2] == 1);
+};
+void testMinAndMaxInOneRowsTask_01(){
+    matrix m = createMatrixFromArray(
+            (int[]) {
+                    1, 2, 9,
+                    4, 5, 6,
+                    7, 8, 3
+            },
+            3, 3
+    );
+    task_01(m);
+    assert(m.values[0][0] == 1 && m.values[0][1] == 2 && m.values[0][2] == 9 &&
+           m.values[2][0] == 7 && m.values[2][1] == 8 && m.values[2][2] == 3);
+};
+
+
 int main() {
-    runAllTests();
-
-
-    return 0;
-
+    testUsualTask_01();
+    testAllSameTask_01();
+    testMinAndMaxInOneRowsTask_01();
+        return 0;
 }

@@ -18,8 +18,9 @@ matrix getMemMatrix(int nRows, int nCols) {
 
 matrix *getMemArrayOfMatrices(int nMatrices,int nRows, int nCols) {
     matrix *ms = (matrix*) malloc(sizeof(matrix) * nMatrices);
-    for (int i = 0; i < nMatrices; i++)
+    for (int i = 0; i < nMatrices; i++) {
         ms[i] = getMemMatrix(nRows, nCols);
+    }
     return ms;
 }
 
@@ -27,6 +28,7 @@ matrix *getMemArrayOfMatrices(int nMatrices,int nRows, int nCols) {
 void freeMemMatrix(matrix *m) {
     for (int i = 0; m->nRows < i; i++) {
         free(m->values[i]);
+
     }
     free(m->values);
     m->values=NULL;
@@ -35,6 +37,7 @@ void freeMemMatrix(matrix *m) {
 void freeMemMatrices(matrix *ms, int nMatrices) {
     for (int i = 0; i < nMatrices; i++) {
         freeMemMatrix(&ms[i]);
+        ms->values[i]=NULL;
     }
     free(ms);
     ms->values=NULL;
